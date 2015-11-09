@@ -1,0 +1,195 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>LIFE admin</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link rel="shortcut icon" href="favicon.ico" />
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+  </head>
+  <body ng-app="lifeAdmin" ng-controller="AppCtrl">
+    <!--[if lte IE 8]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <div ng-show="isLoggedIn" class="main">
+      <!-- Add your site or application content here -->
+      <div class="header">
+        <div class="navbar navbar-default" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="#/">life Admin</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="js-navbar-collapse">
+
+              <ul class="nav navbar-nav">
+                <li><a ng-href="#/subscription">subscriptions</a></li>
+                <li><a ng-href="#/monetization">monetization</a></li>
+                <li><a ng-href="#/companies"> companies</a></li>
+                <li><a ng-href="#/students"> students</a></li>
+                <li><a ng-href="#/announcements"> Announcements</a></li>
+                <li><a ng-click="logout()">log out</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+      <div ng-view=""></div>
+      </div>
+
+      <div class="footer">
+        <div class="container text-center">
+          <p><span class="glyphicon glyphicon-yen"></span> LIFE team</p>
+        </div>
+      </div>
+  </div>
+
+<div class="container" ng-hide="isLoggedIn" id="login-form">
+  <!--<div ng-show="error" class="alert alert-danger">{{error}}</div>-->
+<div class="jumbotron" id="login">
+  <div class="row">
+    <div class="col-md-12" id="life_logo">
+      <img src="images/logo_life_logo_life.svg"><h1 style="color:white;">Admin</h1>
+    </div>
+  </div>
+  
+  <form name="loginForm" ng-submit="login()" role="form" novalidate>
+
+    <div ng-show="error.internalServerError">
+      <p style="color:red;">
+        <span class="glyphicon glyphicon-exclamation-sign"></span>
+        Interval server Error 
+      </p>
+    </div>
+
+    <div ng-show="error.invalidCredentials">
+      <p style="color:red;">
+        <span class="glyphicon glyphicon-exclamation-sign"></span>
+        Invalid email or password
+      </p>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="form-group">
+              <label for="email" class="pull-left">email</label>
+              <i class="fa fa-key"></i>
+              <input type="email" name="signinEmail" id="email" class="form-control" ng-model="credentials.email"
+              placeholder="email" required />
+          </div>
+          <div class="form-group">
+              <label for="password" class="pull-left">Password</label>
+              <i class="fa fa-lock"></i>
+              <input type="password" name="signinPassword" id="password" class="form-control" 
+              ng-model="credentials.password" placeholder="password"required />
+          </div>
+          <div class="form-actions">
+              <button type="submit" class="btn btn-danger">Login</button>
+          </div>
+       </div>
+      </div>
+    </form>
+  </div>
+  </div>
+
+  <div class="container" ng-show="error.serverNotResponding">
+    <div class="row">
+      <div class="col-md-12">
+        <p style="color:red;">
+          <span class="glyphicon glyphicon-exclamation-sign"></span>
+          server unreacheble =(
+        </p>
+        The address requested is not responding
+      </div>
+  </div>
+</div>
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+     <script>
+       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
+       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
+       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
+       }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-XXXXX-X');
+       ga('send', 'pageview');
+    </script>
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/angular-smart-table/dist/smart-table.js"></script>
+    <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+        <script src="companies/companiesList/companiesList.js"></script>
+        <script src="modal/announcementAdd/announcementAdd.js"></script>
+        <script src="modal/announcementEdit/announcementEdit.js"></script>
+        <script src="modal/announcementDelete/announcementDelete.js"></script>
+        <script src="modal/companyAdd/companyAdd.js"></script>
+        <script src="modal/companyEdit/companyEdit.js"></script>
+        <script src="modal/companyDelete/companyDelete.js"></script>
+        <script src="modal/subscriptionDelete/subscriptionDelete.js"></script>
+        <script src="modal/subscriptionAdd/subscriptionAdd.js"></script>
+        <script src="modal/subscriptionEdit/subscriptionEdit.js"></script>
+        <script src="modal/monetizationAdd/monetizationAdd.js"></script>
+        <script src="modal/monetizationDelete/monetizationDelete.js"></script>
+        <script src="modal/monetizationEdit/monetizationEdit.js"></script>
+        <script src="modal/studentDelete/studentDelete.js"></script>
+        <script src="modal/studentEdit/studentEdit.js"></script>
+        <script src="monetization/monetizationList/monetizationList.js"></script>
+        <script src="monetization/monetizationDetail/monetizationDetail.js"></script>
+        <script src="companies/companiesDetail/companiesdetail.js"></script>
+        <script src="subscription/subscriptionDetail/subscriptionDetail.js"></script>
+        <script src="scripts/services/authentication.js"></script>
+        <script src="scripts/services/http_subscription.js"></script>
+        <script src="scripts/services/http_companies.js"></script>
+        <script src="scripts/services/http_monetization.js"></script>
+        <script src="subscriptionList/subscriptionList.js"></script>
+        <script src="scripts/services/time.js"></script>
+        <script src="scripts/services/http_hirings.js"></script>
+        <script src="students/students.js"></script>
+        <script src="scripts/services/http_students.js"></script>
+        <script src="announcement/announcementList/announcementList.js"></script>
+        <script src="scripts/services/http_announcement.js"></script>
+        <script src="announcement/announcementDetail/announcementDetail.js"></script>
+        <script src="auth/signin/signin.js"></script>
+        <script src="scripts/controllers/app.js"></script>
+        <script src="scripts/directives/prefectures.js"></script>
+        <!-- endbuild -->
+</body>
+</html>
+
+<p>This is the second file</p>
+<p>This is the file file inside a subdirectory</p>
